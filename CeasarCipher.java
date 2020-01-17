@@ -41,7 +41,7 @@ public class CeasarCipher
 	String msg;
 	boolean run = true;
 	while(run){
-		System.out.println("Enter:\n\t1. Encrypt\n\t2. Decrypt\n\t3. Bruteforce\n\t0. Exit");
+		System.out.print("Enter:\n\t1. Encrypt\n\t2. Decrypt\n\t3. Bruteforce\n\t0. Exit\n> ");
 		int choice = sc.nextInt();
 		sc.nextLine();
 		switch(choice){
