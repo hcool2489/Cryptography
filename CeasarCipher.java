@@ -8,31 +8,22 @@ public class CeasarCipher
                 ch[i]+=key;
                 if(ch[i]>90)
                     ch[i]-=26;
+				else if(ch[i]<65)
+					ch[i]+=26;
             }
             else if(ch[i]>=97&&ch[i]<=122){
                 ch[i]+=key;
                 if(ch[i]>122)
                     ch[i]-=26;
+				else if(ch[i]<97)
+					ch[i]+=26;
             }
         }
         return String.valueOf(ch);
     }
     
     private static String decrypt(String text, int key){
-        char[] ch = text.toCharArray();
-        for(int i=0;i<ch.length;i++){
-            if(ch[i]>=65&&ch[i]<=90){
-                ch[i]-=key;
-                if(ch[i]<65)
-                    ch[i]+=26;
-            }
-            else if(ch[i]>=97&&ch[i]<=122){
-                ch[i]-=key;
-                if(ch[i]<97)
-                    ch[i]+=26;
-            }
-        }
-        return String.valueOf(ch);
+        return encrypt(text, -key);
     }
     
 	public static void main(String[] args) {
