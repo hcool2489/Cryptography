@@ -10,7 +10,7 @@ public class RailFence
             Arrays.fill(railFence[i],'~');
         }
         boolean dir = true;
-        for(int i=0,j=0;j<msg.length();){
+        for(int i=0,j=0;j<msg.length();j++){
             if(dir){
                 railFence[i][j] = msg.charAt(j);
                 i++;
@@ -22,7 +22,6 @@ public class RailFence
                 if(i==0)
                     dir = true;
             }
-            j++;
         }
         
         print(railFence,key,msg.length());
@@ -37,7 +36,47 @@ public class RailFence
     }
     
     private static String decrypt(String msg, int key){
-        return "abc";
+		railFence = new char[key][msg.length()];
+        char[] arr = new char[msg.length()];
+        for(int i=0;i<key;i++){
+            Arrays.fill(railFence[i],'~');
+        }
+        boolean dir = true;
+        for(int i=0,j=0;j<msg.length();j++){
+            if(dir){
+                railFence[i][j] = msg.charAt(j);
+                i++;
+                if(i==key-1)
+                    dir = false;
+            }else{
+                railFence[i][j] = msg.charAt(j);
+                i--;
+                if(i==0)
+                    dir = true;
+            }
+        }
+		for(int i=0,k=0;i<key;i++){
+			for(int j=0;j<msg.length();j++){
+				if(railFence[i][j]!='~')
+					railFence[i][j]=msg.charAt(k++);
+			}
+		}
+		dir = true;
+		for(int i=0,j=0;j<msg.length();j++){
+            if(dir){
+                arr[j] = railFence[i][j];
+                i++;
+                if(i==key-1)
+                    dir = false;
+            }else{
+                arr[j] = railFence[i][j];
+                i--;
+                if(i==0)
+                    dir = true;
+            }
+        }
+		
+        return new String(arr);
     }
     
     private static void print(char[][] arr,int il, int jl){
